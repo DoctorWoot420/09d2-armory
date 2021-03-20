@@ -1,4 +1,4 @@
-#Windows version with slight modifications to prevent mounting issues.  Used for local windows dev.
+#This is the original version from Nokka's slash version.  Retaining as-is because likely needed when deploying to linux.
 version: "3.4"
 services:
   # mongodb is the data storage for the armory used to cache all characters.
@@ -6,7 +6,7 @@ services:
     image: mongo:4.2
     volumes:
       - ./mongodb-init:/docker-entrypoint-initdb.d
-      - mongodata:/data/db
+      - ./data/mongodb:/data/db
     ports:
       - "${MONGODB_PORT}:${MONGODB_PORT}"
     environment:
@@ -37,5 +37,3 @@ services:
       - "9000:80"
     depends_on:
       - armory-api
-volumes:
-  mongodata:
